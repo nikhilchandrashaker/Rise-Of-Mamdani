@@ -1,0 +1,15 @@
+cycle_or_race,candidate_or_scope,metric,value,unit,source_type,source_id,caveat
+2025 mayoral campaign,Zohran Mamdani,Total receipts,17196623,USD,Candidate-specific CFB summary,S05,Dynamic snapshot; confirm filing/reporting date.
+2025 mayoral campaign,Zohran Mamdani,Total disbursements,16538094,USD,Candidate-specific CFB summary,S05,Campaign spending under candidate committee; distinct from independent spending.
+2025 mayoral campaign,Zohran Mamdani,Public funds received,4051115,USD,Candidate-specific CFB summary,S05,As displayed in CFB summary snapshot.
+2025 mayoral campaign,Zohran Mamdani,Number of contributors,40824,contributors,Candidate-specific CFB summary,S05,Counts depend on CFB disclosure and summary rules.
+2025 mayoral campaign,Zohran Mamdani,Average contribution size,99,USD,Candidate-specific CFB summary,S05,CFB displayed average; do not recompute without knowing included contribution types.
+2025 mayoral campaign,Zohran Mamdani,NYC contributions,2542426,USD,Candidate-specific CFB summary,S05,As displayed in CFB summary snapshot.
+2025 mayoral campaign,Zohran Mamdani,Contributions from outside NYC,1479776,USD,Candidate-specific CFB summary,S05,As displayed in CFB summary snapshot.
+2025 mayoral race,Andrew Cuomo,Independent spending in support,31000000,USD,NYC CFB post-election report,S04,Independent expenditure; not candidate-controlled spending.
+2025 mayoral race,Zohran Mamdani,Independent spending in opposition,21900000,USD,NYC CFB post-election report,S04,Independent expenditure; not candidate-controlled spending.
+2025 NYC election cycle,All races,Campaign spending,123500000,USD,NYC CFB post-election report,S04,Cycle-wide aggregate.
+2025 NYC election cycle,Mayoral campaigns,Campaign spending,72200000,USD,NYC CFB post-election report,S04,Race-wide aggregate.
+2025 NYC election cycle,All candidates,Public funds distributed,86800000,USD,NYC CFB post-election report,S04,Distributed to 131 candidates.
+2025 NYC election cycle,All races,Independent spending,83200000,USD,NYC CFB post-election report,S04,Cycle-wide aggregate.
+2025 NYC election cycle,All individual contributions,Individual contributions total,41100000,USD,NYC CFB post-election report,S04,"244,401 contributions; 88.2% under $250; median $50."

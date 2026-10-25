@@ -1,0 +1,11 @@
+file,field,definition,type,limitations
+timeline.csv,date,Date or period for milestone,ISO date/text,Some periods are approximate; exact dates should be confirmed.
+primary_results.csv,count_type,First-choice or final ranked-choice round,Categorical,Do not compare these as equivalent election stages.
+rcv_rounds.csv,transferred_or_change,Votes transferred or change in count at the named round,Integer,Round totals and inactive ballots must be interpreted using BOE rules.
+polling_observations.csv,candidate_support_percent,Reported polling percentage for candidate and measure,Percent,"Polls differ by sample population, field dates, methods, and question."
+campaign_finance.csv,value,Numeric amount for metric and scope,Number + unit,Do not combine candidate-controlled finance and independent expenditures.
+campaign_mechanism_indicators.csv,value,Reported metric from secondary source,Numeric + unit,"Several values are reported claims or analyst-produced measures, not independently audited."
+geographic_election_template.csv,election_district_id,Official election-district identifier,Text,Use official NYC BOE ED-level CSVs and preserve geography identifiers.
+message_coding_template.csv,primary_theme,Primary topic coded from public campaign communication,Categorical,Create a codebook; double-code a sample and calculate inter-coder agreement.
+research_hypotheses.csv,limitations,Main threats to validity for each research question,Text,"Use as a research plan, not as a set of established conclusions."
+sources.csv,source_id,Unique source identifier referenced by records,Text,Keep retrieval dates and downloaded originals in a reproducibility folder.

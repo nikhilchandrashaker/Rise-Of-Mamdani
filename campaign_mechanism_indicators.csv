@@ -1,0 +1,16 @@
+theme,metric,value,unit,evidence_basis,source_id,limitations
+Field organizing,Volunteers,50145,count,Campaign-reported figure cited in retrospective,S10,"Treat as reported campaign claim, not independently audited."
+Field organizing,Field leads,499,count,Campaign-reported figure cited in retrospective,S10,"Treat as reported campaign claim, not independently audited."
+Field organizing,Doors knocked,1500000,doors (approx.),Campaign-reported figure cited in retrospective,S10,Reported as over 1.5 million; use lower-bound/approximate flag.
+Field organizing,Phone calls,2100000,calls (approx.),Campaign-reported figure cited in retrospective,S10,Reported as 2.1 million; not equivalent to unique voters contacted.
+Field organizing,Neighborhoods covered,65,neighborhoods (more than),Campaign-reported figure cited in retrospective,S10,Reported coverage; no standardized neighborhood-level distribution.
+Digital messaging,Instagram engagement comparison,14,times,Washington Post reported Sprout Social comparison for June 2025,S13,Relative engagement rate vs Cuomo; platform/time-window definitions matter.
+Digital conversation,Social conversation mentions comparison,30,times plus,Washington Post reported conversations about Mamdani outnumbered Cuomo by more than 30-to-1 in June,S13,Reported third-party metric; mentions are not unique users or votes.
+Affordability message,Share of candidate ads/videos with price/affordability terms,78,percent,"Searchlight Institute analysis of Mamdani ads, YouTube and TikTok videos",S12,Analyst-coded content sample; not all campaign communications.
+Affordability message,Share of Cuomo ads/videos with price/affordability terms,32,percent,"Searchlight Institute analysis of Cuomo ads, YouTube and TikTok videos",S12,Same caveats as above; coding definition and corpus scope matter.
+Voter issue priorities,NYC voters naming affordable prices among Mamdani's top three issues,51,percent,Searchlight Institute exit poll,S12,"Poll-based, source-specific estimate; retain methodology/crosstabs."
+Voter issue priorities,NYC voters naming affordable prices among national Democratic Party's top three issues,24,percent,Searchlight Institute exit poll,S12,Not a direct vote-causation estimate.
+Online content monitoring,Manually coded posts in Equality Labs report,500,posts,Research report description,S14,"Targeted-post sample, not a representative sample of all posts."
+Online content monitoring,Posts in broader Mamdani-related corpus,17100000,posts,Equality Labs report description,S14,Corpus depends on collection and search terms.
+Digital mobilization,Instagram automated direct messages,144000,messages (reported),Campaign tool vendor/organizing retrospective account,S10,Reported secondary source; verify original source and date range before treating as audited.
+Digital mobilization,Clicks from automated direct messages,45000,clicks (reported),Campaign tool vendor/organizing retrospective account,S10,Reported secondary source; clicks are not turnout or vote conversions.

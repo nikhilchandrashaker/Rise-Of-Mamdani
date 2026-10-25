@@ -1,0 +1,18 @@
+round,candidate_or_status,votes,share_percent,transferred_or_change,notes
+Round 1,Zohran Mamdani,469642,43.82,0,Initial first-choice count
+Round 1,Andrew Cuomo,387137,36.1,0,Initial first-choice count
+Round 1,Brad Lander,120634,11.3,0,Initial first-choice count
+Round 1,Adrienne Adams,44192,4.1,0,Initial first-choice count
+Round 1,Scott Stringer,17820,1.7,0,Initial first-choice count
+Round 1,Zellnor Myrie,10593,1.0,0,Initial first-choice count
+Round 1,Whitney Tilson,8443,0.8,0,Initial first-choice count
+Round 1,Michael Blake,4366,0.4,0,Initial first-choice count
+Round 1,Jessica Ramos,4273,0.4,0,Initial first-choice count
+Round 1,Paperboy Love Prince,1560,0.1,0,Initial first-choice count
+Round 1,Selma Bartholomew,1489,0.1,0,Initial first-choice count
+Round 1,Write-ins,1581,0.1,0,Initial first-choice count
+Round 2,Zohran Mamdani,469755,43.86,113,113 write-in transfers
+Round 2,Andrew Cuomo,387377,36.2,240,240 write-in transfers
+Round 3 final,Zohran Mamdani,573169,56.39,103414,Transfers from eliminated candidates after round 2
+Round 3 final,Andrew Cuomo,443229,43.61,55852,Transfers from eliminated candidates after round 2
+Round 3 final,Inactive ballots,55332,,54683,Ballots no longer active in final round; do not count as candidate votes
