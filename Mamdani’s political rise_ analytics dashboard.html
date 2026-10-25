@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mamdani’s political rise: analytics dashboard</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#fafaf8;--card:#fff;--fg:#1f2933;--muted:#667085;--line:#e1e4e8;--m:#1d4ed8;--c:#8a9099;--o:#cbd5e1;--warn:#fff7e0;--warnl:#d9a400;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161c;--card:#1a2029;--fg:#e8ebef;--muted:#9aa4b2;--line:#2c3440;--m:#6d9bff;--c:#7b8490;--o:#3a4452;--warn:#2b2614;--warnl:#b88a00;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12161c;--card:#1a2029;--fg:#e8ebef;--muted:#9aa4b2;--line:#2c3440;--m:#6d9bff;--c:#7b8490;--o:#3a4452;--warn:#2b2614;--warnl:#b88a00;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 Georgia,'Times New Roman',serif}
+main{max-width:980px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:1.65rem;line-height:1.2;margin:0 0 4px;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:26px 0 8px;font-family:system-ui,sans-serif}
+.sub{color:var(--muted);margin:0 0 16px}
+nav{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 18px;font-family:system-ui,sans-serif}
+nav button{border:1px solid var(--line);background:var(--card);color:var(--fg);padding:7px 13px;border-radius:7px;font:inherit;font-size:.88rem;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--m);border-color:var(--m);color:#fff}
+nav button:focus-visible{outline:2px solid var(--m);outline-offset:2px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:8px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.kpi b{display:block;font-size:1.6rem;font-family:system-ui,sans-serif}
+.kpi span{color:var(--muted);font-size:.85rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:10px 0}
+.note{background:var(--warn);border-left:3px solid var(--warnl);padding:9px 13px;margin:12px 0;font-size:.9rem;border-radius:0 6px 6px 0}
+.row{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;margin:5px 0;font-size:.88rem}
+.track{background:var(--line);border-radius:4px;height:20px;position:relative}
+.bar{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;color:#fff;font:600 .75rem system-ui,sans-serif;white-space:nowrap;min-width:2px}
+.lbl{position:absolute;left:calc(100% + 6px);top:1px;font:.78rem system-ui,sans-serif;color:var(--muted);white-space:nowrap}
+.hide{display:none}
+.legend{display:flex;gap:14px;font:.8rem system-ui,sans-serif;color:var(--muted);margin:6px 0}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
+svg{width:100%;height:auto;max-width:100%}
+svg text{fill:var(--fg);font:11px system-ui,sans-serif}
+table{border-collapse:collapse;width:100%;font:.84rem system-ui,sans-serif}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}
+.scroll{overflow-x:auto}
+@media (max-width:560px){.row{grid-template-columns:96px 1fr}}
+</style>
+</head>
+<body>
+<main>
+<h1>Mamdani’s political rise: analytics dashboard</h1>
+<p class="sub">Built from the v2 research dataset. Descriptive evidence only; nothing here shows what caused the result.</p>
+<nav role="tablist" id="tabs"></nav>
+
+<section id="t-results">
+ <div class="kpis">
+  <div class="kpi"><b>43.8%</b><span>First-choice share (469,642 votes)</span></div>
+  <div class="kpi"><b>56.4%</b><span>Final-round share (573,169 votes)</span></div>
+  <div class="kpi"><b>+129,940</b><span>Final margin over Cuomo (first choice: +82,505)</span></div>
+ </div>
+ <h2>First-choice votes, 2025 Democratic primary</h2>
+ <div class="card" id="fc"></div>
+ <h2>Earlier contests</h2>
+ <div class="card scroll"><table><tr><th>Contest</th><th>Votes</th><th>Context</th></tr>
+ <tr><td>2020 Assembly primary</td><td>8,410</td><td>Contested primary</td></tr>
+ <tr><td>2020 Assembly general</td><td>38,221</td><td>Unopposed</td></tr>
+ <tr><td>2024 Assembly general</td><td>37,911</td><td>Unopposed</td></tr></table></div>
+ <div class="note">Unopposed generals reflect turnout, not contested-race strength. District totals are not comparable with a citywide primary.</div>
+</section>
+
+<section id="t-rcv" class="hide">
+ <div class="kpis">
+  <div class="kpi"><b>64.9%</b><span>Of ballots that moved to a finalist went to Mamdani</span></div>
+  <div class="kpi"><b>7.7 → 12.8 pts</b><span>Margin, first choice → final round</span></div>
+  <div class="kpi"><b>5.2%</b><span>Ballots inactive by the final round (55,332)</span></div>
+ </div>
+ <h2>Round 1 vs final round</h2>
+ <div class="card" id="rcv1"></div>
+ <h2>Where the 214,951 ballots for other candidates went</h2>
+ <div class="card" id="rcv2"></div>
+ <div class="note">Ranked-choice counting widened the margin; Mamdani already led on first choices. Transfers show rankings, not why voters ranked as they did. Inactive ballots are not votes for either candidate.</div>
+</section>
+
+<section id="t-polls" class="hide">
+ <h2>Emerson polls vs the actual first-choice result</h2>
+ <div class="card"><div class="legend"><span><i style="background:var(--m)"></i>Mamdani</span><span><i style="background:var(--c)"></i>Cuomo</span><span>Diamonds = actual result</span></div><div id="pollsvg"></div></div>
+ <div class="card scroll"><table><tr><th>Poll</th><th>Mamdani</th><th>Cuomo</th><th>Gap</th><th>Notes</th></tr>
+ <tr><td>Feb 2025</td><td>1%</td><td>n/a</td><td>n/a</td><td>Secondary report</td></tr>
+ <tr><td>Mar 2025</td><td>10%</td><td>38%</td><td>−28</td><td>Sample detail not recorded</td></tr>
+ <tr><td>May 23–26</td><td>23%</td><td>35%</td><td>−12</td><td>Primary-voter subsample, n=606, ±3.9</td></tr>
+ <tr><td>Jun 2025</td><td>32%</td><td>35%</td><td>−3</td><td>Sample detail not recorded</td></tr>
+ <tr><td>Jun RCV simulation</td><td>52%</td><td>48%</td><td>+4</td><td>Simulation, actual final: 56.4–43.6</td></tr></table></div>
+ <div class="note">A starter series: five rows, one pollster, different populations. It is not a panel and cannot support trend modeling. Polls include undecided respondents, so the gap to the actual result is not a “polling miss.”</div>
+</section>
+
+<section id="t-fin" class="hide">
+ <div class="note">Three kinds of money are kept separate on purpose. Do not add them together.</div>
+ <h2>Mamdani committee (candidate-controlled)</h2>
+ <div class="card" id="fin1"></div>
+ <div class="kpis">
+  <div class="kpi"><b>40,824</b><span>Contributors (average $99)</span></div>
+  <div class="kpi"><b>23.6%</b><span>Public funds as a share of receipts</span></div>
+  <div class="kpi"><b>36.8%</b><span>Outside-NYC share of the two geographic contribution lines</span></div>
+ </div>
+ <h2>Independent spending (not controlled by any campaign)</h2>
+ <div class="card" id="fin2"></div>
+ <h2>Citywide totals, all candidates</h2>
+ <div class="card scroll"><table>
+ <tr><td>Campaign spending, all races</td><td>$123.5m</td></tr>
+ <tr><td>Mayoral campaign spending</td><td>$72.2m</td></tr>
+ <tr><td>Public funds distributed (131 candidates)</td><td>$86.8m</td></tr>
+ <tr><td>Independent spending</td><td>$83.2m</td></tr>
+ <tr><td>Individual contributions</td><td>$41.1m (244,401 contributions; median $50)</td></tr></table></div>
+ <div class="note">Unreconciled: the contribution lines ($4.02m) plus public funds ($4.05m) explain only about half of $17.2m in total receipts. Check the CFB Data Library before stating small-donor shares. Finance data for Cuomo and other candidates is not in the dataset.</div>
+</section>
+
+<section id="t-gaps" class="hide">
+ <h2>Organizing and digital (reported claims)</h2>
+ <div class="card scroll"><table>
+ <tr><th>Indicator</th><th>Value</th><th>Basis</th></tr>
+ <tr><td>Volunteers</td><td>50,145</td><td>Campaign-reported</td></tr>
+ <tr><td>Doors knocked</td><td>1.5m+</td><td>Campaign-reported</td></tr>
+ <tr><td>Phone calls</td><td>2.1m</td><td>Campaign-reported</td></tr>
+ <tr><td>Instagram engagement vs Cuomo (June)</td><td>14×</td><td>Washington Post, citing Sprout Social</td></tr>
+ <tr><td>Ads/videos with price terms</td><td>78% vs 32%</td><td>Searchlight analysis (Mamdani vs Cuomo)</td></tr></table></div>
+ <div class="note">Calls and doors are attempts, not voters reached. None of these figures are audited.</div>
+ <h2>Not yet collected</h2>
+ <div class="card"><b>Geography.</b> The election-district template is blank. It needs NYC BOE district results, prior turnout and ACS context.<br><br>
+ <b>Messaging.</b> The coding template is blank. It needs a sample of 100–200 coded posts, ads and speeches.<br><br>
+ <b>General election.</b> Official totals are not in the dataset.</div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const tabs=[["results","Results"],["rcv","Ranked-choice"],["polls","Polling"],["fin","Finance"],["gaps","Organizing & gaps"]];
+const nav=$("tabs");
+tabs.forEach(([k,l],i)=>{const b=document.createElement("button");b.textContent=l;b.setAttribute("role","tab");b.setAttribute("aria-selected",i==0);
+ b.onclick=()=>{tabs.forEach(([k2])=>$("t-"+k2).classList.toggle("hide",k2!=k));[...nav.children].forEach(x=>x.setAttribute("aria-selected",x==b))};nav.appendChild(b)});
+const fmt=n=>n.toLocaleString("en-US");
+function bars(el,rows,max,labelFn){
+ $(el).innerHTML=rows.map(r=>`<div class="row"><div>${r[0]}</div><div class="track" style="margin-right:${labelFn?"130px":"0"}"><div class="bar" style="width:${Math.max(r[1]/max*100,.5)}%;background:${r[2]}"></div>${labelFn?`<span class="lbl">${labelFn(r)}</span>`:""}</div></div>`).join("");
+}
+const css=n=>`var(--${n})`;
+bars("fc",[["Zohran Mamdani",469642,css("m"),"43.8%"],["Andrew Cuomo",387137,css("c"),"36.1%"],["Brad Lander",120634,css("o"),"11.3%"],["Adrienne Adams",44192,css("o"),"4.1%"],["Scott Stringer",17820,css("o"),"1.7%"],["Zellnor Myrie",10593,css("o"),"1.0%"],["All others (6 lines)",19712,css("o"),"1.8%"]].map(r=>r),480000,r=>fmt(r[1])+" ("+r[3]+")");
+bars("rcv1",[["Mamdani, round 1",469642,css("m")],["Mamdani, final",573169,css("m")],["Cuomo, round 1",387137,css("c")],["Cuomo, final",443229,css("c")]],600000,r=>fmt(r[1]));
+bars("rcv2",[["To Mamdani",103527,css("m")],["To Cuomo",56092,css("c")],["Inactive",55332,css("o")]],110000,r=>fmt(r[1]));
+const m=17196623;
+bars("fin1",[["Total receipts",17196623,css("m")],["Disbursements",16538094,css("m")],["Public funds",4051115,css("m")],["NYC contributions",2542426,css("m")],["Outside-NYC contrib.",1479776,css("m")]],18000000,r=>"$"+(r[1]/1e6).toFixed(1)+"m");
+bars("fin2",[["For Cuomo",31000000,css("c")],["Against Mamdani",21900000,css("c")],["Mamdani’s own spend (for scale)",16538094,css("m")]],34000000,r=>"$"+(r[1]/1e6).toFixed(1)+"m");
+// polling chart
+(function(){const W=640,H=300,L=40,R=20,T=16,B=40,xs=["Feb","Mar","May 23–26","Jun","Primary (actual)"];
+ const X=i=>L+i*(W-L-R)/4,Y=v=>T+(1-v/50)*(H-T-B);
+ let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Polling vs actual first-choice result">`;
+ [0,10,20,30,40,50].forEach(v=>s+=`<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${L-6}" y="${Y(v)+4}" text-anchor="end">${v}%</text>`);
+ xs.forEach((x,i)=>s+=`<text x="${X(i)}" y="${H-16}" text-anchor="middle">${x}</text>`);
+ const line=(pts,col)=>{const p=pts.filter(a=>a[1]!=null);s+=`<polyline fill="none" stroke="${col}" stroke-width="2.5" points="${p.map(a=>X(a[0])+","+Y(a[1])).join(" ")}"/>`;
+  p.forEach(a=>s+=`<circle cx="${X(a[0])}" cy="${Y(a[1])}" r="4" fill="${col}"/><text x="${X(a[0])}" y="${Y(a[1])-9}" text-anchor="middle">${a[1]}%</text>`)};
+ line([[0,1],[1,10],[2,23],[3,32]],"var(--m)");line([[1,38],[2,35],[3,35]],"var(--c)");
+ [[43.8,"var(--m)"],[36.1,"var(--c)"]].forEach(([v,c])=>{const x=X(4),y=Y(v);s+=`<polygon points="${x},${y-8} ${x+8},${y} ${x},${y+8} ${x-8},${y}" fill="${c}" stroke="var(--fg)" stroke-width="1.5"/><text x="${x-14}" y="${y+4}" text-anchor="end">${v}%</text>`});
+ $("pollsvg").innerHTML=s+"</svg>";})();
+</script>
+</body>
+</html>
